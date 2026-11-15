@@ -1,0 +1,111 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #000;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.contenedor {
+    display: flex; flex-direction: row; width: 100%;
+    max-width: 1200px; height: 100%;
+    align-items: center; justify-content: center;
+}
+
+/* Área de texto interactiva */
+.texto-container {
+    flex: 1; 
+    height: 100%;
+    position: relative; /* Clave para el canvas absoluto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+/* El lienzo mágico */
+#canvas-brillos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Detrás de las letras */
+    pointer-events: none; /* Que no entorpezca clicks o toques */
+}
+
+/* Envoltura del texto para ponerlo por encima */
+.frases-wrapper {
+    position: relative;
+    z-index: 2; /* Encima de los brillos */
+    text-align: center;
+    pointer-events: auto;
+}
+
+.frase-principal {
+    font-family: 'Playfair Display', serif; 
+    font-size: 3rem;
+    font-style: italic; 
+    color: #fff0f3; /* Aclaramos un poco el texto base para que el brillo destaque */
+    margin-bottom: 12rem; /* Separación aumentada (antes era 1.5rem) */
+
+    line-height: 1.2; 
+    /* Efecto Neón sutil en tonos rosa */
+    text-shadow: 
+        0 0 8px rgba(255, 194, 209, 0.8), 
+        0 0 20px rgba(255, 150, 180, 0.6),
+        0 0 35px rgba(255, 100, 150, 0.3);
+}
+
+.frase-secundaria {
+    font-family: 'Dancing Script', cursive; 
+    font-size: 2.2rem; 
+    color: #ffffff; 
+    margin-top: 3rem;
+    text-shadow: 
+        0 0 6px rgba(255, 255, 255, 0.7), 
+        0 0 15px rgba(255, 194, 209, 0.5);
+}
+
+.ascii-container {
+    flex: 1; display: flex; justify-content: center; align-items: center;
+}
+
+.ascii-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#video-fondo {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: fill;
+    z-index: 1;
+    filter: saturate(1.4) brightness(1.2);
+}
+
+#pantalla-ascii {
+    position: relative; z-index: 2;
+    background-color: #000;
+    color: #fff;
+    mix-blend-mode: multiply;
+    font-family: monospace; font-size: 6px; line-height: 6px;
+    font-weight: 900; white-space: pre; text-align: left;
+    -webkit-text-size-adjust: none;
+}
+
+@media (max-width: 768px) {
+    .contenedor { flex-direction: column; justify-content: center; }
+    .texto-container { flex: 0.4; width: 100%; padding: 1rem; }
+    .frase-principal { font-size: 2rem; }
+    .frase-secundaria { font-size: 1.5rem; }
+    .ascii-container {
+        flex: 0.6; width: 100%;
+        transform: scale(0.6); transform-origin: top center;
+    }
+}
