@@ -100,12 +100,30 @@ body {
 }
 
 @media (max-width: 768px) {
-    .contenedor { flex-direction: column; justify-content: center; }
-    .texto-container { flex: 0.4; width: 100%; padding: 1rem; }
-    .frase-principal { font-size: 2rem; }
-    .frase-secundaria { font-size: 1.5rem; }
+    .contenedor { 
+        flex-direction: column; 
+        justify-content: flex-start; /* Evita que se amontonen en el centro */
+    }
+    .texto-container { 
+        flex: none; /* Quitamos el flex para usar alturas absolutas */
+        height: 45vh; /* El texto usará exactamente el 45% superior de la pantalla */
+        width: 100%; 
+        padding-top: 15%; /* Da un buen respiro desde arriba */
+        z-index: 20; /* CRÍTICO: Fuerza al texto y a sus partículas a estar por encima de todo */
+    }
+    .frase-principal { 
+        font-size: 2.2rem; 
+        margin-bottom: 2.5rem; /* Reducimos la separación drásticamente SOLO en celular */
+    }
+    .frase-secundaria { 
+        font-size: 1.6rem; 
+    }
     .ascii-container {
-        flex: 0.6; width: 100%;
-        transform: scale(0.6); transform-origin: top center;
+        flex: none; 
+        height: 55vh; /* Las flores usarán el 55% inferior */
+        width: 100%;
+        transform: scale(0.55); /* Escalamos un poquito más para asegurar que no desborde */
+        transform-origin: top center; /* Ancla la animación en su parte superior */
+        z-index: 1; /* Manda el bloque de la animación detrás del texto */
     }
 }
